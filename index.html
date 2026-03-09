@@ -422,6 +422,15 @@
       border-color: var(--accent);
     }
 
+    .contact-email {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      user-select: text;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 3rem 0 2.5rem;
@@ -447,6 +456,10 @@
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
+    }
+
     @media (max-width: 560px) {
       .hero { padding: 4rem 0 3rem; }
       .nda-block { flex-direction: column; gap: 1.5rem; padding: 2rem; }
@@ -552,17 +565,9 @@
       <p class="section-label">Get in touch</p>
       <div class="contact-row">
         <span class="contact-label">Email</span>
-        <!-- Replace with your actual email -->
-        <span style="font-family:'Open Sans',sans-serif;font-size:0.75rem;font-weight:300;color:#FFFFFF;letter-spacing:0.02em;">vanishungry@gmail.com</span>
+        <span class="contact-email">vanishungry@gmail.com</span>
       </div>
     </section>
 
     <footer>
-      <span class="footer-copy">© 2026 Vanessa Yeo</span>
-      <div class="footer-line"></div>
-    </footer>
-
-  </div>
-
-</body>
-</html>
+      <span c
