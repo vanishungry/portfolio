@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanessa Yeo — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F0F0F;
+      --ink: #F0EDE8;
+      --muted: #A8A49E;
+      --accent: #C4A882;
+      --border: #2A2925;
+      --white: #161614;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      animation: fadeIn 0.9s ease forwards;
+      animation-delay: 0.1s;
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    .page {
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 2.5rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      animation: slideDown 0.7s ease both;
+      animation-delay: 0.2s;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+
+    .nav-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 0 4rem;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.35s;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .hero-desc {
+      font-size: 0.8rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 440px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      animation: expandWidth 1s ease both;
+      animation-delay: 0.5s;
+      transform-origin: left;
+    }
+
+    @keyframes expandWidth {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: 1; }
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      color: var(--accent);
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── ABOUT SECTION ── */
+    .about-section {
+      padding: 3.5rem 0;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.45s;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .about-col {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .about-para {
+      font-size: 0.75rem;
+      line-height: 1.9;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .about-para strong {
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .brand-list {
+      font-size: 0.7rem;
+      line-height: 1.9;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .about-aside {
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-aside-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .about-link {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .about-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .about-aside-text {
+      font-size: 0.72rem;
+      line-height: 1.85;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── NDA BLOCK ── */
+    .work-section {
+      padding: 3.5rem 0;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.55s;
+    }
+
+    .nda-block {
+      border: 1px solid var(--border);
+      background: var(--white);
+      padding: 3rem;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .nda-stamp {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      padding: 0.5rem 0.45rem;
+      flex-shrink: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      user-select: none;
+      opacity: 0.8;
+    }
+
+    .nda-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .nda-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+
+    .nda-body {
+      font-size: 0.75rem;
+      line-height: 1.9;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nda-body.punch {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--accent);
+      line-height: 1.5;
+    }
+
+    /* ── CV SECTION ── */
+    .cv-section {
+      padding: 3.5rem 0;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.63s;
+    }
+
+    .cv-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cv-desc {
+      font-size: 0.75rem;
+      line-height: 1.85;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      max-width: 360px;
+    }
+
+    .cv-desc em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .btn-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 1.6rem;
+      border: 1px solid var(--ink);
+      color: var(--bg);
+      background: var(--ink);
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.2s ease;
+    }
+
+    .btn-cv::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: translateY(100%);
+      transition: transform 0.25s ease;
+      z-index: 0;
+    }
+
+    .btn-cv span { position: relative; z-index: 1; }
+    .btn-cv:hover::after { transform: translateY(0); }
+    .btn-cv:hover { color: var(--ink); }
+
+    .btn-cv svg {
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    /* ── AI SECTION ── */
+    .ai-section {
+      padding: 3.5rem 0;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.72s;
+    }
+
+    .ai-body {
+      font-size: 0.75rem;
+      line-height: 1.9;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      max-width: 520px;
+    }
+
+    .ai-highlight {
+      display: inline;
+      color: #FFFFFF;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .ai-body + .ai-body {
+      margin-top: 1rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 3.5rem 0 0;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.7s;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      min-width: 60px;
+    }
+
+    .contact-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 0 2.5rem;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideUp 0.8s ease both;
+      animation-delay: 0.8s;
+    }
+
+    .footer-copy {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-line {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 560px) {
+      .hero { padding: 4rem 0 3rem; }
+      .nda-block { flex-direction: column; gap: 1.5rem; padding: 2rem; }
+      .nda-stamp { writing-mode: horizontal-tb; transform: none; }
+      footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <nav>
+      <span class="nav-name">Vanessa Yeo</span>
+      <span class="nav-tag">Product Designer</span>
+    </nav>
+
+    <section class="hero">
+      <p class="hero-eyebrow">Portfolio</p>
+      <h1 class="hero-title">Good work.<br><em>Can't show you.</em></h1>
+      <p class="hero-desc">
+        Product designer based in Singapore. Most of my work lives behind NDAs — which is either very unfortunate or a sign that clients trust me with things worth protecting. Hopefully the latter.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="about-section">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div class="about-col about-col--wide">
+          <p class="about-para">
+            I design end-to-end experiences that connect <strong>business goals, technology, and real user needs</strong>. From shaping problem spaces and defining flows to crafting the final interface, I focus on building thoughtful, human-centred solutions that work across the entire product ecosystem.
+          </p>
+          <p class="about-para">
+            Previously from Advertising, I've worked and developed solutions for brands such as <strong>Netflix, Evian, Adidas, Nespresso, SK-II, Estée Lauder</strong>, among others.
+          </p>
+        </div>
+        <div class="about-col">
+          <div class="about-aside">
+            <p class="about-aside-label">Outside of work</p>
+            <p class="about-aside-text">
+              I make full-scale replica food models out of clay and resin. Some have been commissioned for display in restaurants and shops. See more at <a class="about-link" href="https://www.instagram.com/itchyhandsvan/" target="_blank" rel="noopener">@itchyhandsvan</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" style="animation-delay:0.52s"></div>
+
+    <section class="work-section">
+      <p class="section-label">Selected Work</p>
+
+      <div class="nda-block">
+        <div class="nda-stamp">NDA</div>
+        <div class="nda-text">
+          <p class="nda-headline">Nothing to see here.<br>Legally speaking.</p>
+          <p class="nda-body">
+            The projects I'm most proud of are also the ones I'm contractually unable to share publicly. Enterprise systems, platforms, financial tools.
+          </p>
+          <p class="nda-body">
+            If you'd like to see my work, reach out. I'm happy to walk through case studies over a call, share a password-protected deck, or just have a conversation about the problems I've worked on and how I approached them.
+          </p>
+          <p class="nda-body punch">
+            The portfolio exists. It's just not on the internet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" style="animation-delay:0.62s"></div>
+
+    <section class="cv-section">
+      <p class="section-label">CV</p>
+      <div class="cv-row">
+        <p class="cv-desc">
+          My portfolio is under NDA.<br>My CV, thankfully, is not.<br>
+          <em>This, I can show you.</em>
+        </p>
+        <!-- Replace YOUR_CV_URL with your actual CV file link e.g. Google Drive or Dropbox direct link -->
+        <a class="btn-cv" href="./VanessaYeo_CV.pdf" download="Vanessa_Yeo_CV.pdf">
+          <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 1v8M6 9l-3-3M6 9l3-3M1 12h10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Download CV</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" style="animation-delay:0.65s"></div>
+
+    <section class="ai-section">
+      <p class="section-label">This page was built by Claude — intentionally.</p>
+      <p class="ai-body">Not because I cannot use Figma or couldn't figure out the code, but because the way we design is changing, and designers need to adapt with it. This landing page probably looks like many others out there, and that's okay.</p>
+      <p class="ai-body">Design has never been about the tools or how something simply looks. It has always been about the thinking: understanding users, defining the right problems, and designing solutions that actually work.</p>
+      <p class="ai-body">AI should be used with intention. It can accelerate workflows, build, and iterate. The thinking, judgement, and responsibility for the design should still belong to the designer.</p>
+    </section>
+
+    <div class="divider" style="animation-delay:0.75s"></div>
+
+    <section class="contact-section">
+      <p class="section-label">Get in touch</p>
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <!-- Replace with your actual email -->
+        <a class="contact-link" href="/cdn-cgi/l/email-protection#d38a9c86818c969e929a9f93b6abb2bea3bfb6fdb0bcbe"><span class="__cf_email__" data-cfemail="8bf2e4fef9cbeee6eae2e7a5e8e4e6">[email&#160;protected]</span></a>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-copy">© 2026 Vanessa Yeo</span>
+      <div class="footer-line"></div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
